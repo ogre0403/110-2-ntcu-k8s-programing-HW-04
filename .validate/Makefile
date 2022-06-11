@@ -8,10 +8,9 @@ prepare:
 
 run: prepare
 	make deploy
-	@#bash .validate/helper.sh
+	@bash .validate/helper.sh
 
 all: run
-	 @bash .validate/validate-rule1.sh
 	 @bash .validate/validate-rule2.sh
 	 @bash .validate/validate-rule3.sh
 	 @bash .validate/validate-rule4.sh

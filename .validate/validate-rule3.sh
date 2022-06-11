@@ -1,12 +1,35 @@
 #!/bin/bash
 
 echo ""
-echo "驗證Informer 是否會自動建立Service，並測試是否連連通"
+echo "驗證 operator 是否會自動建立Deployment與Service，並測試是否連連通"
 
 
-LABEL="ntcu-k8s=hw3"
+LABEL="ntcu-k8s=hw4"
 
-# informer 會建立一個svc
+
+# 等待nginx ready
+
+nginx_name=`kubectl get deployments.apps -l ${LABEL} -o yaml | yq '.items[0].metadata.name'`
+ready="false"
+for i in {1..60}; do
+  sleep 2
+
+  ready=`kubectl get deployments.apps ${nginx_name} >/dev/null  2>&1  && \
+   kubectl get deployments.apps ${nginx_name} -o yaml |  yq .status.readyReplicas==.status.replicas`
+
+	if [ "$ready" == "true" ]; then
+		break
+	fi
+
+  if [[ "$i" -eq 60 ]]; then
+    echo "timeout 120 sec. wait for create deployment ${nginx_name} success"
+    exit 1
+  fi
+
+done
+
+
+# operator 會建立一個svc
 
 for i in {1..20}; do
   sleep 1
@@ -17,7 +40,7 @@ for i in {1..20}; do
   fi
 
   if [[ "$i" -eq 20 ]]; then
-      echo "timeout: informer建立的svc數量 $svc_num 不正確. 應為 1"
+      echo "timeout: operator 建立的svc數量 $svc_num 不正確. 應為 1"
       exit 1
   fi
 
