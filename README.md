@@ -27,7 +27,9 @@
    * 從本地利用curl透過NodePort存取Deployment的web service
 6. 刪除Web CRD時，會同時刪除Controller建立的Deployment與Service
 7. 利用operator-sdk所產生的Makefile裡的`make generate`、`make manifest`、`make install`、`make deploy`、`make docker-build`進行編譯、部署等操作。
-8. 執行 `make deploy` 或 `make all -f .validate/Makefile` 前，確認執行下列二個修改
+8. 執行 `make deploy` 或 `make all -f .validate/Makefile` 前，請注意
+   * operator-sdk 產生的Makefile，無需做任何變更
+   * 利用 `kind load docker-image controller:latest` 將建立出來的image載入至kind
    * `config/manager/manager.yaml` 中 , `image: controller:latest` 下面請多加一行 `imagePullPolicy: IfNotPresent`
      ```yaml
      ...
