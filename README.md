@@ -2,17 +2,31 @@
 
 
 ## 作業要求
-1. 採用go語言，開發一個informer程式，當watch到Deployment建立時，產生一個Service。
-   * watch的Deployment會有key為`ntcu-k8s`, value為`hw3`，做為識別要處理的Deployment
-   * informer建立的Service，需加上Label，key為`ntcu-k8s`, value為`hw3`
-   * 建立Deployment，image使用web service類型的image,例如nginx
-   * 建立Service，類型使用NodePort
+1. 使用operator-sdk建立CRD與相對應的Controller
+2. 建立 CRD 的 資訊如下：
+   * Kind: Web
+   * Group: hw4
+   * Domain: ntcu.edu.tw
+3. CRD 的Spec需含
+   * Image, 類型為String
+   * NodePortNumber, 類型為int32
+4. 完成的CRD的YAML範例如下：
+      ```yaml
+      apiVersion: hw4.ntcu.edu.tw/v1alpha1
+      kind: Web
+      metadata:
+        name: web-sample
+      spec:
+        image: "nginx:1.7.9"
+        nodePortNumber: 31234
+      ```
+5. Web CRD的Controller 發覺 Web CRD建立時，產生一個Deployment與Service。
+   * Deployment與Service均會有key為`ntcu-k8s`, value為`hw4`的label
+   * 建立Deployment，image使用由Web CRD裡的Image欄位取得
+   * 建立Service，類型使用NodePort, NodePort的值，由Web CRD裡的nodePortNumber欄位取得
    * 從本地利用curl透過NodePort存取Deployment的web service
-3. 刪除nginx Deployment時，會同時刪除第一步所建立之Service
-4. 撰寫Multi-stage Dockerfile用來建置image
-5. 部署informer至Kubernetes執行，所需的YAML放在manifest目錄
-   * 應至少需要Deployment以及ServiceAccount
-   * informer Deployment **勿** 加上 key為`ntcu-k8s`, value為`hw3`的Label
+6. 刪除Web CRD時，會同時刪除Controller建立的Deployment與Service
+7. 利用operator-sdk所產生的Makefile裡的`make generate`、`make manifest`、`make install`、`make deploy`、`make docker-build`進行編譯、部署等操作。
 
 ## 繳交作業流程
 1. fork [upstream HW-04 專案](https://github.com/ogre0403/110-2-ntcu-k8s-programing-HW-04) 至自己的Github帳號的downstream HW-04專案。
