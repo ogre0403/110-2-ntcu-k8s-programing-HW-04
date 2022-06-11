@@ -1,15 +1,14 @@
-SA := $(shell for f in ./manifest/*; do cat $$f | yq '(.|select(.kind == "ServiceAccount")).metadata.name' ; done)
-IMAGE := $(shell for f in ./manifest/*; do cat $$f | yq "(.|select(.spec.template.spec.serviceAccountName == \"$(SA)\")).spec.template.spec.containers[].image" ; done)
 kind_name ?= kind
+IMG := controller:latest
 
 
 prepare:
-	docker build -t $(IMAGE) .
-	kind load docker-image $(IMAGE) --name $(kind_name)
+	make docker-build IMG=controller:latest
+	kind load docker-image $(IMG) --name $(kind_name)
 
 run: prepare
-	kubectl apply -f manifest
-	@bash .validate/helper.sh
+	make deploy
+	@#bash .validate/helper.sh
 
 all: run
 	 @bash .validate/validate-rule1.sh

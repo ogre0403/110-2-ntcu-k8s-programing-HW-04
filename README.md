@@ -27,6 +27,16 @@
    * 從本地利用curl透過NodePort存取Deployment的web service
 6. 刪除Web CRD時，會同時刪除Controller建立的Deployment與Service
 7. 利用operator-sdk所產生的Makefile裡的`make generate`、`make manifest`、`make install`、`make deploy`、`make docker-build`進行編譯、部署等操作。
+8. 執行 `make deploy` 或 `make all -f .validate/Makefile` 前，確認執行下列二個修改
+   * `config/manager/manager.yaml` 中 , `image: controller:latest` 下面請多加一行 `imagePullPolicy: IfNotPresent`
+     ```yaml
+     ...
+      image: controller:latest
+      imagePullPolicy: IfNotPresent
+     ...
+     ```
+   * `config/rbac/kustomization.yaml`裡的倒數四行 `- auth_proxy_*.yaml`註解掉
+
 
 ## 繳交作業流程
 1. fork [upstream HW-04 專案](https://github.com/ogre0403/110-2-ntcu-k8s-programing-HW-04) 至自己的Github帳號的downstream HW-04專案。
