@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DEADLINE='2022-07-01 00:10:00'
+DEADLINE='2022-07-01 01:10:00'
 
-CURRENT=`TZ=Asia/Taipei date +"%Y-%m-%d %H:%M:%S"`
+CURRENT=$(TZ=Asia/Taipei date +"%Y-%m-%d %H:%M:%S")
 
 
 # echo "deadline: $DEADLINE"

@@ -15,18 +15,18 @@ nodeport=$(kubectl get web.hw4.ntcu.edu.tw -o yaml | oc neat | yq '.items[0].spe
 nginx_image=$(kubectl get deployments.apps -l ${LABEL} -o yaml | yq '.items[0].spec.template.spec.containers[0].image')
 
 
-if [ "${web_image}" != ${nginx_image} ]; then
+if [ "${web_image}" != "${nginx_image}" ]; then
   echo "Web CRD 的image 為 ${web_image}, 但是 deployment image為 ${nginx_image}"
   exit 1
 fi
 
-nginx_name=`kubectl get deployments.apps -l ${LABEL} -o yaml | yq '.items[0].metadata.name'`
+nginx_name=$(kubectl get deployments.apps -l ${LABEL} -o yaml | yq '.items[0].metadata.name')
 ready="false"
 for i in {1..60}; do
   sleep 2
 
-   ready=`kubectl get deployments.apps ${nginx_name} >/dev/null  2>&1  && \
-   kubectl get deployments.apps ${nginx_name} -o yaml |  yq .status.readyReplicas==.status.replicas`
+   ready=$(kubectl get deployments.apps "${nginx_name}" >/dev/null  2>&1  && \
+   kubectl get deployments.apps "${nginx_name}" -o yaml |  yq .status.readyReplicas==.status.replicas)
 
 	if [ "$ready" == "true" ]; then
 		break
@@ -44,7 +44,7 @@ done
 
 for i in {1..20}; do
   sleep 1
-  svc_num=`kubectl get svc   -l ${LABEL}  -o yaml | yq '.items | length'`
+  svc_num=$(kubectl get svc   -l ${LABEL}  -o yaml | yq '.items | length')
 
   if [[ "$svc_num" -eq 1 ]]; then
       break
@@ -57,14 +57,14 @@ for i in {1..20}; do
 
 done
 
-cid=`docker ps -f name=control-plane -q`
+cid=$(docker ps -f name=control-plane -q)
 
 
 #nodeport=`kubectl get svc  -l ${LABEL}  -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
 
 for i in {1..20}; do
 
-  docker exec ${cid} curl 127.0.0.1:${nodeport}  >/dev/null  2>&1
+  docker exec "${cid}" curl 127.0.0.1:"${nodeport}"  >/dev/null  2>&1
 
   RET=$?
 

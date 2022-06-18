@@ -15,18 +15,18 @@ if [[ "$svc_num" -ne 0 ]]; then
 fi
 
 
-deployment_num=`kubectl get deployment   -l ${LABEL}  -o yaml | yq '.items | length'`
-if [[ "deployment_num" -ne 0 ]]; then
+deployment_num=$(kubectl get deployment   -l ${LABEL}  -o yaml | yq '.items | length')
+if [[ "$deployment_num" -ne 0 ]]; then
     echo " operator 建立的 deployment數量為$svc_num 不正確. 應為 0"
     exit 1
 fi
 
 # 建立隨機nginx deployment
 #deployment=nginx-deployment
-random=`echo ${RANDOM}`
-random_port=`echo $(( $RANDOM % 1000 + 30001 ))`
+random=$(echo ${RANDOM})
+random_port=$(echo $(( $RANDOM % 1000 + 30001 )))
 
-nginx_ver=`echo $(( $RANDOM % 10 + 10 ))`
+nginx_ver=$(echo $(( $RANDOM % 10 + 10 )))
 
 
 cat <<EOF | kubectl apply -f -
