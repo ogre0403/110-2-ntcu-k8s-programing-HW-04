@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEADLINE='2022-07-01 01:10:00'
+DEADLINE='2022-06-30 01:10:00'
 
 CURRENT=$(TZ=Asia/Taipei date +"%Y-%m-%d %H:%M:%S")
 
