@@ -48,7 +48,7 @@
    * 建立manifest目錄，將YAML檔至於manifest目錄內
    * 建立的PR名稱 必為 `HW-04-[a-z]{3}[0-9]{6}`
    * 嚴禁修改 `.validate/*`以及 `.github/workflows` 的內容。若有修改，會導致無法建立PR
-   * 本次作業deadline為 `2022/06/30 00:00`
+   * 本次作業deadline為 `2022/06/29 23:59`
 5. 約15~20分鐘後，至 [upstream HW-04 專案 PR頁面](https://github.com/ogre0403/110-2-ntcu-k8s-programing-HW-04/pulls)，檢視是否測試成功。
    * 若不成功，依測試結果的錯誤訊息進行修正後再重新push即可，**不用再建立新的PR**.
    * 在deadline前可以無限重新push修正的版本，直到測試成功。
