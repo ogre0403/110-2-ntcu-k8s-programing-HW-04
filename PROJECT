@@ -1,0 +1,19 @@
+domain: ntcu.edu.tw
+layout:
+- go.kubebuilder.io/v3
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: 110-2-ntcu-k8s-programing-hw-04
+repo: github.com/jh08666/110-2-ntcu-k8s-programing-HW-04
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: ntcu.edu.tw
+  group: hw4
+  kind: Web
+  path: github.com/jh08666/110-2-ntcu-k8s-programing-HW-04/api/v1alpha1
+  version: v1alpha1
+version: "3"
