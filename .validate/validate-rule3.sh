@@ -8,8 +8,8 @@ LABEL="ntcu-k8s=hw4"
 
 
 # 等待nginx ready
-web_image=$(kubectl get web.hw4.ntcu.edu.tw -o yaml | oc neat | yq '.items[0].spec.image')
-nodeport=$(kubectl get web.hw4.ntcu.edu.tw -o yaml | oc neat | yq '.items[0].spec.nodePortNumber')
+web_image=$(kubectl get web.hw4.ntcu.edu.tw -o yaml | yq '.items[0].spec.image')
+nodeport=$(kubectl get web.hw4.ntcu.edu.tw -o yaml  | yq '.items[0].spec.nodePortNumber')
 
 
 nginx_image=$(kubectl get deployments.apps -l ${LABEL} -o yaml | yq '.items[0].spec.template.spec.containers[0].image')
