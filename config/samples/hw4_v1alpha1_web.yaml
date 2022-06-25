@@ -4,4 +4,4 @@ metadata:
   name: web-sample
 spec:
     image: "nginx:1.7.9"
-    nodePortNumber: 30100
+    nodePortNumber: 31234
