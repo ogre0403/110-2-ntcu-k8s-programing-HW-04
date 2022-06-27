@@ -1,0 +1,60 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+<<<<<<< HEAD
+=======
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+>>>>>>> first commit
+  - hw4.ntcu.edu.tw
+  resources:
+  - webs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - hw4.ntcu.edu.tw
+  resources:
+  - webs/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - hw4.ntcu.edu.tw
+  resources:
+  - webs/status
+  verbs:
+  - get
+  - patch
+  - update
