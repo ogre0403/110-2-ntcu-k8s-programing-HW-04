@@ -3,4 +3,5 @@ kind: Web
 metadata:
   name: web-sample
 spec:
-  # TODO(user): Add fields here
+    image: "nginx:1.7.9"
+    nodePortNumber: 31234
