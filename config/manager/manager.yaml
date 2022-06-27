@@ -69,4 +69,8 @@ spec:
             cpu: 10m
             memory: 64Mi
       serviceAccountName: controller-manager
+<<<<<<< HEAD
       terminationGracePeriodSeconds: 10
+=======
+      terminationGracePeriodSeconds: 10
+>>>>>>> first commit

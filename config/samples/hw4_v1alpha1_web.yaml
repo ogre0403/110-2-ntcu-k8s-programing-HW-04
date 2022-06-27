@@ -4,4 +4,8 @@ metadata:
   name: web-sample
 spec:
     image: "nginx:1.7.9"
+<<<<<<< HEAD
     nodePortNumber: 31234
+=======
+    nodePortNumber: 30100
+>>>>>>> first commit

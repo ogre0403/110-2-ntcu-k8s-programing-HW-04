@@ -12,9 +12,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> first commit
 */
 
 package main
@@ -34,8 +37,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
+<<<<<<< HEAD
 	hw4v1alpha1 "github.com/acs108102-ntcu/110-2-ntcu-k8s-programing-HW-04/api/v1alpha1"
 	"github.com/acs108102-ntcu/110-2-ntcu-k8s-programing-HW-04/controllers"
+=======
+	hw4v1alpha1 "github.com/kevin6191015/110-2-ntcu-k8s-programing-HW-04/api/v1alpha1"
+	"github.com/kevin6191015/110-2-ntcu-k8s-programing-HW-04/controllers"
+>>>>>>> first commit
 	//+kubebuilder:scaffold:imports
 )
 
@@ -74,7 +82,11 @@ func main() {
 		Port:                   9443,
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
+<<<<<<< HEAD
 		LeaderElectionID:       "f8487ed8.ntcu.edu.tw",
+=======
+		LeaderElectionID:       "bd8178ea.ntcu.edu.tw",
+>>>>>>> first commit
 		// LeaderElectionReleaseOnCancel defines if the leader should step down voluntarily
 		// when the Manager ends. This requires the binary to immediately end when the
 		// Manager is stopped, otherwise, this setting is unsafe. Setting this significantly

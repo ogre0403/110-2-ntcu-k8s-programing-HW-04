@@ -5,7 +5,11 @@ plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
 projectName: 110-2-ntcu-k8s-programing-hw-04
+<<<<<<< HEAD
 repo: github.com/acs108102-ntcu/110-2-ntcu-k8s-programing-HW-04
+=======
+repo: github.com/kevin6191015/110-2-ntcu-k8s-programing-HW-04
+>>>>>>> first commit
 resources:
 - api:
     crdVersion: v1
@@ -14,6 +18,10 @@ resources:
   domain: ntcu.edu.tw
   group: hw4
   kind: Web
+<<<<<<< HEAD
   path: github.com/acs108102-ntcu/110-2-ntcu-k8s-programing-HW-04/api/v1alpha1
+=======
+  path: github.com/kevin6191015/110-2-ntcu-k8s-programing-HW-04/api/v1alpha1
+>>>>>>> first commit
   version: v1alpha1
 version: "3"
