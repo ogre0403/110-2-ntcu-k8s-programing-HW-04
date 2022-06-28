@@ -1,0 +1,7 @@
+apiVersion: hw4.ntcu.edu.tw/v1alpha1
+kind: Web
+metadata:
+  name: web-sample
+spec:
+    image: "nginx:1.7.9"
+    nodePortNumber: 31234
