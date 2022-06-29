@@ -7,6 +7,7 @@ plugins:
 projectName: 110-2-ntcu-k8s-programing-hw-04
 repo: github.com/ogre0403/110-2-ntcu-k8s-programing
 resources:
+
 - api:
     crdVersion: v1
     namespaced: true
